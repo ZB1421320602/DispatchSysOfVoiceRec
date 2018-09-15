@@ -1,0 +1,50 @@
+
+server:
+  port: 8081
+  servlet:
+    context-path: /ccs
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml        # mybatis配置文件所在路径
+  type-aliases-package: com.telecom.ccs.entities    # 所有Entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件
+
+spring:
+   datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.14.215:3306/thinkit
+        username: root
+        password: 123456
+        dbcp2:
+             min-idle: 5                                           # 数据库连接池的最小维持连接数
+             initial-size: 5                                       # 初始化连接数
+             max-total: 5                                          # 最大连接数
+             max-wait-millis: 200
+
+
+# Elasticsearch
+# 9200端口是用来让HTTP REST API来访问ElasticSearch，而9300端口是传输层监听的默认端口
+elasticsearch:
+        ip: 192.168.11.173
+        port: 9300
+        pool: 5
+        cluster:
+              name: myapp-elasticsearch64on173
+
+
+
+spring:
+      redis:
+        host: 192.168.11.173
+        port: 6379
+        database: 0
+        jedis:
+          pool:
+              max-active: 8
+              max-idle: 8
+              min-idle: 0
+              max-wait: -1ms                              # 等待连接获取的最大超时时间
+          timeout: 5000
+
+
